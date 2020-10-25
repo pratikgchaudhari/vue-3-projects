@@ -1,0 +1,103 @@
+<html>
+
+<head>
+    <title>
+        Vue 3 Todo App
+    </title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="./css/app.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <div class="container" id="todoapp">
+        <div class="row">
+            <div class="section">
+                <h4>Add Todos</h4>
+            </div>
+            <div class="divider"></div>
+            <div class="section">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <i class="material-icons prefix">title</i>
+                            <textarea v-model="todo.title" id="todo_title" class="materialize-textarea"></textarea>
+                            <label for="todo_title">A small title would be nice...</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <i class="material-icons prefix">description</i>
+                            <textarea v-model="todo.description" id="todo_description"
+                                class="materialize-textarea"></textarea>
+                            <label for="todo_description">Maybe add a little description...</label>
+                        </div>
+                        <div class="s4">
+                            <a class="btn-floating btn-large waves-effect waves-light red tooltipped"
+                                data-position="bottom" data-tooltip="Add Todo!" @click="addTodo()"><i
+                                    class="material-icons">add</i></a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="divider"></div>
+            <div class="section">
+                <h5>Your Todos</h5>
+            </div>
+            <div class="divider"></div>
+            <div class="section">
+                <table class="striped centered responsive-table">
+                    <thead>
+                        <th>
+                            
+                        </th>
+                        <th>
+                            Title
+                        </th>
+                        <th>
+                            Description
+                        </th>
+                        <th>
+                            
+                        </th>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(todo,id) in todos">
+                            <td>
+                                {{id}}
+                            </td>
+                            <td>
+                                {{todo.title}}
+                            </td>
+                            <td>
+                                {{todo.description}}
+                            </td>
+                            <td>
+                                <a v-show="!todo.done"
+                                    class="btn-floating btn-large waves-effect waves-light light-green accent-4 tooltipped"
+                                    data-position="bottom" data-tooltip="I'm done with this one!"
+                                    @click="markAsDone(todo.id)"><i class="material-icons">check</i></a>
+
+                                <i v-if="todo.done" class="todo-done-tick material-icons tooltipped" data-position="bottom"
+                                    data-tooltip="You're done with this one!">check</i>
+                            </td>
+                        </tr>
+                        <tr v-show="todoCount == 0">
+                            <td colspan="4">You haven't added any Todos yet :(</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+
+</html>
